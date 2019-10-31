@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructor Evaluation</title>
+<style>
+.button {
+display: block;
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<form  id="form1">
+<p>The instructor was prepared for class.</p>
+<input type="radio" name="prepared" value="1" /><label for="prepared_one">1</label>
+<input type="radio" name="prepared" value="2" /><label for="prepared_two">2</label>
+<input type="radio" name="prepared" value="3" /><label for="prepared_three">3</label>
+<input type="radio" name="prepared" value="4" /><label for="prepared_four">4</label>
+<input type="radio" name="prepared" value="5" /><label for="prepared_five">5</label>
+
+<p>The topic was interesting to me.</p>
+<input type="radio" name="interesting" value="1" /><label for="int_one">1</label>
+<input type="radio" name="interesting" value="2" /><label for="int_two">2</label>
+<input type="radio" name="interesting" value="3" /><label for="int_three">3</label>
+<input type="radio" name="interesting" value="4" /><label for="int_four">4</label>
+<input type="radio" name="interesting" value="5" /><label for="int_five">5</label>
+
+
+<button type="submit" value="Submit" class="button">Submit</button>
+</form>
+
+<p>Question 1 Answer: <span id="quest1"></span></p>
+<p>Question 2 Answer: <span id="quest2"></span></p>
+<p>Score Total: <span id="total"></span></p>
+<p>Score Average: <span id="average"></span></p>
+    <p>Average above 3 (Yes or No): <span id="above3"></span></p>
+    <p>Which measures scored 5?: <span id="score5"></span></p>
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the rest of your script here
+quest1 = document.querySelector('input[name = "prepared"]:checked').value;
+quest2 = document.querySelector('input[name = "interesting"]:checked').value;
+document.getElementById("quest1").innerHTML = quest1;
+document.getElementById("quest2").innerHTML = quest2;
+total = parseInt(quest1) + parseInt(quest2);
+document.getElementById("total").innerHTML = total;
+average = total/2;
+document.getElementById("average").innerHTML = average;
+
+scores = [];
+scores.push(quest1);
+scores.push(quest2);
+
+if(average>3) {
+	document.getElementById("above3").innerHTML = "Yes!";
+}
+else {
+	document.getElementById("above3").innerHTML = "No!";
+}
+
+
+document.getElementById("score5").innerHTML = "sorry, this instructor must have been Zmikly";
+
+for(i=0;i<scores.length;i++) {
+	if(scores[i]==5) {
+		document.getElementById("score5").innerHTML = "q" + (i+1) + "had a score of 5";
+	}
+}
+
+
+
+return false; // required to not refresh the page; just leave this here
+}
+</script>
+
+</body>
+</html>

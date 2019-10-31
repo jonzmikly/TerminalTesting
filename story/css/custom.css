@@ -1,0 +1,27 @@
+.nav-links i {
+color: blue
+}
+
+p {
+	color: red;
+}
+
+.row {
+	margin: 40px 0;
+}
+
+img {
+	padding: 10px;
+}
+
+.leftpadding {
+	padding-left: 10px;
+}
+
+img.nopadding {
+	padding: 0;
+}
+
+.jumbotron {
+	background: url('../photo.jpg');
+}

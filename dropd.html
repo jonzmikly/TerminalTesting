@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head><title>Related Artists App</title></head>
+<script type="text/javascript" src="data.json"></script>
+
+
+<body>
+
+<p>Pick a Texas band to see related artists.</p>
+<form  id="form1">
+
+
+
+<select id="thedropdown">
+  <option value="0">Choose:</option>
+  <option value="old97">Old 97's</option>
+  <option value="spoon">Spoon</option>
+  <option value="bob">Bob Schneider</option>
+</select>
+
+</form>
+
+<p>Artist: <span id="artist"></span></p>
+<p>Related Artists: <br /> <span id="related"></span></p>
+
+
+<script>
+
+//function that executes when you submit the form
+document.getElementById("form1").onchange=function() {
+	  
+// assigns value in dropdown to a variable
+artist = document.getElementById("thedropdown").value;
+if (artist != 0) {
+//changes the DOM element for artist to form value
+select = document.getElementById("thedropdown");
+option = select.options[select.selectedIndex].text;
+document.getElementById("artist").innerHTML= option;
+
+//need this to convert value of artist to executable code to reference the related band's array
+band = window[artist];
+
+// parses the band names json from data.json to band
+band = JSON.parse(band);
+    document.getElementById("related").innerHTML = "";
+    //for loop reads the json and returns the popularity value if value from form equals value in json
+    for (i=0; i<band.length; i++) {
+  // use the += here to append to the element for each iteration of the loop, rather than replace
+  document.getElementById("related").innerHTML += band[i].name + " " + band[i].popularity + "<br/>" ;
+ 
+    } // end internal for
+ 
+  
+} // end starting if
+}//end function
+</script>
+
+
+
+</body>
+</html>
+
+

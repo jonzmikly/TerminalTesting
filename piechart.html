@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Map with Filtered Data Set</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    
+    <style>
+    #map_div {
+    width: 50%;
+    }
+    table {
+    width: 50%;
+    }
+    </style>
+</head>
+<body>
+ 
+<p>Search for trailheads with picnic locations.</p>
+  <form id="form1" onchange="drawChart()">
+  <select id="thedropdown">
+  <option value="0">Choose Picnic:</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+
+</form>
+    <div id="map_div"></div>
+    <table>
+    <thead><th>Trailhead</th><th>Picnic: Yes or No</th></thead>
+    <tbody id="mapanswer"></tbody>
+   
+    </table>
+    
+    
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["map"]});
+      google.charts.setOnLoadCallback(drawChart);
+     
+      //data is formatted for google map
+     
+        var origData = [
+        ['Lat', 'Long', 'Name', 'Picnic'],
+        [40.00502079,-105.3065126,'Flagstaff Summit West','Yes'],
+    [40.00418774,-105.3034886,'Flagstaff Summit East','Yes'],
+    [40.06203476,-105.1317793,'East Boulder Trail at White Rocks','No'],
+    [40.11129787,-105.3064337,'Buckingham Park','Yes'],
+    [40.01403427,-105.2953243,'Settlers Park','Yes'],
+    [40.02007287,-105.2978393,'Centennial','Yes'],
+    [40.0216195,-105.1587565,'Teller Farm South','Yes'],
+    [40.03976096,-105.1425324,'Teller Farm North','No'],
+    [40.03997609,-105.2369699,'Cottonwood','No'],
+    [40.10482144,-105.2657619,'Left Hand','No'],
+    [40.07982797,-105.2627991,'Boulder Valley Ranch','No'],
+    [40.08029576,-105.2358061,'Eagle','No'],
+    [40.06271718,-105.2889486,'Four Mile Creek','No'],
+    [40.07048258,-105.2824582,'Foothills','No'],
+    [40.05086277,-105.2824198,'Wonderland Lake','Yes'],
+    [40.03953507,-105.1850645,'Sawhill Ponds','Yes'],
+    [39.99988941,-105.2148387,'Bobolink','No'],
+    [39.99966374,-105.1909312,'Dry Creek','Yes'],
+    [39.98276694,-105.2145567,'Cherryvale','No'],
+    [39.99879048,-105.2828988,'Chautauqua','Yes'],
+    [39.9973017,-105.2802015,'Enchanted Mesa','Yes'],
+    [39.99751137,-105.2926378,'Gregory Canyon','Yes'],
+    [39.96025253,-105.2368007,'South Boulder Creek West','Yes'],
+    [40.00596455,-105.2928848,'Panorama Point','Yes'],
+    [40.00178146,-105.2970695,'Crown Rock','Yes'],
+    [39.92863183,-105.2334102,'Greenbelt Plateau','No'],
+    [39.95308488,-105.2314097,'Marshall Mesa','Yes'],
+    [39.92396203,-105.2350346,'Flatirons Vista','No'],
+    [40.00650088,-105.2945558,'Halfway House','Yes'],
+    [39.99733639,-105.3090728,'Realization Point','Yes'],
+    [39.93859468,-105.2580575,'South Mesa','Yes'],
+    [39.9382445,-105.2566495,'Doudy Draw','No'],
+    [39.97870804,-105.2754686,'NCAR','No'],
+    [39.99504834,-105.6344194,'Fourth of July','Yes'],
+    [40.00884984,-105.3253138,'Chapman Drive','No'],
+    [40.11014744,-105.2826065,'Interim Joder','No'],     
+        ];
+
+
+        
+        function drawChart() {
+                 
+        //form to change based on dropdown
+        
+        selection = document.getElementById("thedropdown").value; 
+        
+        //if 0 selected, maps everything
+        if(selection == "0") {
+//writes origData to html for initial view, line by line with breaks
+        for(i=1; i<origData.length; i++) {
+        document.getElementById("mapanswer").innerHTML += "<tr><td>" + origData[i][2] + "</td><td>" + origData[i][3] + "</td></tr>";
+        } // end initial for
+        
+        // creates visualization using newData array
+        var options = {
+        mapType: 'normal',
+        showInfoWindow: true,
+        }
+        
+        var data = google.visualization.arrayToDataTable(origData);
+        var map = new google.visualization.Map(document.getElementById('map_div'));
+        map.draw(data, options);
+        }
+
+        
+        // if there is a selection
+        else {
+        //start a new array to include only data that is selected
+        var newData = [['Lat', 'Long', 'Name', 'Picnic']];
+        
+        //loop to go match selection and create a new array
+        for(i=1;i<origData.length; i++) {
+            if(origData[i][3] == selection){
+            // only data that meets the selection criteria goes into newData array
+            newData.push(origData[i]);
+            
+            }//end if
+            
+            
+        }//end for
+        
+        //clears out answer div in html
+        
+        document.getElementById("mapanswer").innerHTML = " ";
+        
+        //loop that writes the data in newData, line by line with breaks.
+        for(i=1; i<newData.length; i++) {
+        document.getElementById("mapanswer").innerHTML += "<tr><td>" + newData[i][2] + "</td><td>" + newData[i][3] + "</td></tr>";
+        }
+        var options = {
+        mapType: 'normal',
+        showInfoWindow: true,
+        }
+       
+        // creates visualization using newData array
+        var data = google.visualization.arrayToDataTable(newData);
+        var map = new google.visualization.Map(document.getElementById('map_div'));
+        map.draw(data, {showTip: true});
+       
+      } // end else
+   
+      }//end function
+    </script>
+ </body>
+</html>

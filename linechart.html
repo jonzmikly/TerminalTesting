@@ -1,0 +1,70 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      
+      function drawChart() {
+      
+      selection = document.getElementById("thedropdown").value;
+     
+     
+     info = [
+     {city: "Austin",  y2004: 60, y2005: 80, y2006: 75, y2007: 90, y2008: 95},
+     {city: "Boulder",  y2004: 40, y2005: 37, y2006: 50, y2007: 50, y2008: 100},
+     ];
+     
+     
+     for(i=0; i<info.length; i++) { 
+        
+        
+                //create the if statement to read the json and have it put the appropriate cities data in the chart based on the dropdown
+
+
+         if(selection==info[i].city)
+          y1 = info[i].y2004;
+          y2 = info[i].y2005;
+          y3 = info[i].y2006;        
+          y4 = info[i].y2007;
+          y5 = info[i].y2008;
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Element', 'Minutes'],
+          ['2004', y1],
+          ['2005', y2],
+          ['2006', y3],
+          ['2007', y4],
+          ['2008', y5],
+        ]);
+
+        var options = {
+          title: 'Weekly Commute Minutes',
+          legend: { position: 'bottom' }
+        };
+        
+        var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+ 
+        //find the appropriate visualization code to draw a line chart and place it in the div below called line_chart
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+  <form id="form1" onchange="drawChart()" >
+     
+     <select id="thedropdown">
+     <option value="Austin">Austin</option>
+     <option value="Boulder">Boulder</option>
+     </select>
+    
+  </form>
+    <div id="line_chart"></div>
+  </body>
+</html>
+

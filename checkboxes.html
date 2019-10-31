@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form  id="form1" />
+
+<p>Favorite genres</p>
+<input type="checkbox" name="genre"  value="quiet" />pop
+<input type="checkbox" name="genre"  value="spoon" />rock 
+<input type="checkbox" name="genre"  value="willie" />hiphop
+
+<input type="submit" value="Submit">
+</form>
+
+<p id="answer"></p>
+
+<script>    
+document.getElementById("form1").onsubmit=function() {
+checkboxes = document.querySelectorAll("input[name='genre']:checked");
+
+for( i=0; i < checkboxes.length; i++ ) {
+  document.getElementById("answer").innerHTML += checkboxes[i].value + ", ";
+}	   
+	   return false; // required to not refresh the page; just leave this here
+	   }// end the submit function
+	
+</script>
+</body>
+</html>
+

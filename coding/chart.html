@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      
+      function drawChart() {
+      
+      selection = document.getElementById("thedropdown").value;
+     
+     
+     housinginfo = [ { "Year": 2014, "City": "New York", drugbusts: 56 }, { "Year": 2015, "City": "New York", drugbusts: 54 }, { "Year": 2016, "City": "New York", drugbusts: 34 }, { "Year": 2017, "City": "New York", drugbusts: 65 }, { "Year": 2014, "City": "LA", drugbusts: 54 }, { "Year": 2015, "City": "LA", drugbusts: 54.7 }, { "Year": 2016, "City": "LA", drugbusts: 55.4 }, { "Year": 2017, "City": "LA", drugbusts: 56.1 }, { "Year": 2014, "City": "Chicago", drugbusts: 56.8 }, { "Year": 2015, "City": "Chicago", drugbusts: 57.5 }, { "Year": 2016, "City": "Chicago", drugbusts: 58.2 }, { "Year": 2017, "City": "Chicago", drugbusts: 58.9 }, { "Year": 2014, "City": "Houston", drugbusts: 59.6 }, { "Year": 2015, "City": "Houston", drugbusts: 60.3 }, { "Year": 2016, "City": "Houston", drugbusts: 61 }, { "Year": 2017, "City": "Houston", drugbusts: 61.7 } ];
+
+     
+     
+     for(i=0; i<housinginfo.length; i++) { 
+        
+        
+                //create the if statement to read the json and have it put the appropriate cities data in the chart based on the dropdown
+         
+    if(selection == housinginfo[i].City) {
+       d1 = housinginfo[i].drugbusts;
+       d2 = housinginfo[i+1].drugbusts;
+       d3 = housinginfo[i+2].drugbusts;
+       d4 = housinginfo[i+3].drugbusts;
+  
+    }// end if
+
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Zip Codes', 'Dollars'],
+          ['New York', d1],
+          ['LA', d2],
+          ['Chicago', d3],
+          ['Houston', d4]
+        ]);
+
+        var options = {
+          title: 'Crime in the 4 Largest Cities',
+          legend: { position: 'bottom' }
+        };
+        
+ 
+        //find the appropriate visualization code to draw a line chart and place it in the div below called line_chart
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('line_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+  <form id="form1" onchange="drawChart()" >
+     
+     <select id="thedropdown">
+     <option value="New York">New York</option>
+     <option value="LA">LA</option>
+     <option value="Chicago">Chicago</option>
+     <option value="Houston">Houston</option>
+     </select>
+    
+  </form>
+    <div id="line_chart"></div>
+  </body>
+</html>
+

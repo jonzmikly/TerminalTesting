@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      
+      function drawChart() {
+      
+      selection = document.getElementById("thedropdown").value;
+     
+     
+     info = [ { "measure": "medincome", "z78701": 68152, "z78702": 34734, "z78703": 92606, "z78704": 50248, "z78705": 11917, "z78722": 44917, "z78741": 30183, "z78746": 125327, "z78751": 38624,}, 
+{ "measure": "medhomeval", "z78701": 338300, "z78702": 175400, "z78703": 621900, "z78704": 338200, "z78705": 292500, "z78722": 265100, "z78741": 120200, "z78746": 619900, "z78751": 292200, }, 
+{ "measure": "ownservice", "z78701": 0, "z78702": 0, "z78703": 0, "z78704": 0, "z78705": 1, "z78722": 0, "z78741": 28, "z78746": 0, "z78751": 0,}, 
+{ "measure": "rentservice", "z78701": 7, "z78702": 39, "z78703": 8, "z78704": 11, "z78705": 6, "z78722": 8, "z78741": 11, "z78746": 4, "z78751": 9,}, 
+{ "measure": "ownartist", "z78701": 1, "z78702": 2, "z78703": 0, "z78704": 2, "z78705": 10, "z78722": 1, "z78741": 39, "z78746": 0, "z78751": 2,}, 
+{ "measure": "rentartist", "z78701": 12, "z78702": 51, "z78703": 25, "z78704": 26, "z78705": 23, "z78722": 31, "z78741": 40, "z78746": 8, "z78751": 38,}, 
+{ "measure": "owntech", "z78701": 30, "z78702": 67, "z78703": 13, "z78704": 33, "z78705": 79, "z78722": 37, "z78741": 93, "z78746": 6, "z78751": 42,}, 
+{"measure": "renttech", "z78701": 90, "z78702": 99, "z78703": 92, "z78704": 99, "z78705": 94, "z78722": 97, "z78741": 100, "z78746": 94, "z78751": 97,} ];
+     
+     
+     for(i=0; i<info.length; i++) { 
+        
+      if(selection==info[i].measure) {
+        z1=info[i].z78701;
+        z2=info[i].z78702;
+        z3=info[i].z78703;
+        z4=info[i].z78704;
+        z5=info[i].z78705;
+        z6=info[i].z78722;
+        z7=info[i].z78741;
+        z8=info[i].z78746;
+        z9=info[i].z78751;
+
+        z1a=info[i+1].z78701;
+        z2a=info[i+1].z78702;
+        z3a=info[i+1].z78703;
+        z4a=info[i+1].z78704;
+        z5a=info[i+1].z78705;
+        z6a=info[i+1].z78722;
+        z7a=info[i+1].z78741;
+        z8a=info[i+1].z78746;
+        z9a=info[i+1].z78751;
+
+      }
+                //create the if statement to read the json and have it put the appropriate cities data in the chart based on the dropdown
+         
+         
+
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Element', 'Amount ($)', 'Amount ($)'],
+          ['78701', z1, z1a],
+          ['78702', z2, z2a],
+          ['78703', z3, z3a],
+          ['78704', z4, z4a],
+          ['78705', z5, z5a],
+          ['78722', z6, z6a],
+          ['78741', z7, z7a],
+          ['78746', z8, z8a],
+          ['78751', z9, z9a]
+        ]);
+
+        var options = {
+          title: 'Owning Vs Renting in Austin by Job',
+          legend: { position: 'bottom' }
+        };
+        
+ 
+        //find the appropriate visualization code to draw a line chart and place it in the div below called line_chart
+
+         var chart = new google.visualization.ColumnChart(document.getElementById('line_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart2);
+      
+      
+      function drawChart2() {
+      
+      selection = document.getElementById("thedropdown").value;
+     
+     
+     info = [ { "measure": "medincome", "z78701": 68152, "z78702": 34734, "z78703": 92606, "z78704": 50248, "z78705": 11917, "z78722": 44917, "z78741": 30183, "z78746": 125327, "z78751": 38624,}, 
+{ "measure": "medhomeval", "z78701": 338300, "z78702": 175400, "z78703": 621900, "z78704": 338200, "z78705": 292500, "z78722": 265100, "z78741": 120200, "z78746": 619900, "z78751": 292200, }, 
+{ "measure": "ownservice", "z78701": 0, "z78702": 0, "z78703": 0, "z78704": 0, "z78705": 1, "z78722": 0, "z78741": 28, "z78746": 0, "z78751": 0,}, 
+{ "measure": "rentservice", "z78701": 7, "z78702": 39, "z78703": 8, "z78704": 11, "z78705": 6, "z78722": 8, "z78741": 11, "z78746": 4, "z78751": 9,}, 
+{ "measure": "ownartist", "z78701": 1, "z78702": 2, "z78703": 0, "z78704": 2, "z78705": 10, "z78722": 1, "z78741": 39, "z78746": 0, "z78751": 2,}, 
+{ "measure": "rentartist", "z78701": 12, "z78702": 51, "z78703": 25, "z78704": 26, "z78705": 23, "z78722": 31, "z78741": 40, "z78746": 8, "z78751": 38,}, 
+{ "measure": "owntech", "z78701": 30, "z78702": 67, "z78703": 13, "z78704": 33, "z78705": 79, "z78722": 37, "z78741": 93, "z78746": 6, "z78751": 42,}, 
+{"measure": "renttech", "z78701": 90, "z78702": 99, "z78703": 92, "z78704": 99, "z78705": 94, "z78722": 97, "z78741": 100, "z78746": 94, "z78751": 97,} ];
+
+     
+     
+     for(i=0; i<info.length; i++) { 
+        
+        
+                //create the if statement to read the json and have it put the appropriate cities data in the chart based on the dropdown
+
+
+         if(selection==info[i].measure) {
+          z1 = info[i].z78701;
+          z2 = info[i].z78702;
+          z3 = info[i].z78703;        
+          z4 = info[i].z78704;
+          z5 = info[i].z78705;
+          z6 = info[i].z78722;
+          z7 = info[i].z78741;        
+          z8 = info[i].z78746;
+          z9 = info[i].z78751;
+        }
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Element', 'Minutes'],
+          ['78701', z1],
+          ['78702', z2],
+          ['78703', z3],
+          ['78704', z4],
+          ['78705', z5],
+          ['78722', z6],
+          ['78741', z7],
+          ['78746', z8],
+          ['78751', z9]
+        ]);
+
+        var options = {
+          title: 'Median Home Value vs. Median Income',
+          legend: { position: 'bottom' }
+        };
+        
+        var chart = new google.visualization.LineChart(document.getElementById('line_chart2'));
+ 
+        //find the appropriate visualization code to draw a line chart and place it in the div below called line_chart
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+  <form id="form1" onchange="drawChart()" >
+     
+     <select id="thedropdown">
+     <option value="ownservice">Service</option>
+     <option value="ownartist">Artist</option>
+     <option value="owntech">Tech</option>
+     </select>
+    
+  </form>
+    <div id="line_chart"></div>
+
+<form id="form2" onchange="drawChart2()" >
+     
+     <select id="thedropdown">
+     <option value="ownservice">Median Income</option>
+     <option value="rentservice">Median Home Value</option>
+     </select>
+    
+  </form>
+    <div id="line_chart2"></div>
+
+  </body>
+</html>
+

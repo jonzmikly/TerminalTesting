@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="data.json"></script>
+
+<style>
+th, td {
+text-align: right;
+}
+</style>
+
+</head>
+<body>
+<h1>AFD Fire Incidents 2016</h1>
+<form id="form1">
+<select id="thedropdown">
+<option value="0">Choose:</option>
+<option value="below">10% or Below Poverty</option>
+<option value="above">Above 10% Poverty</option>
+<option value="belowpoverty">All</option>
+</select>
+</form>
+<p>Total in Month: <span id="answer2"></span></p>
+<table width="80%">
+<thead>
+<th>Zip</th><th>% Below Poverty</th><th>Median Income</th><th>Median Home Value</th><th>Own Service</th><th>Rent Service</th><th>Own Artist</th><th>Rent Artist</th><th>Own Tech</th><th>Rent Tech</th>
+</thead>
+<tbody id="answer">
+</tbody>
+</table>
+
+<script>
+
+document.getElementById("form1").onchange = function() {
+j=0;
+
+selection = document.getElementById("thedropdown").value;
+
+document.getElementById("answer").innerHTML = " ";
+ for(i=0;i<data.length; i++) {
+  if(selection == "above") 
+  	if(data[i].belowpoverty > 10) {
+ document.getElementById("answer").innerHTML += "<tr><td>" + data[i].zip + "</td><td>" + data[i].belowpoverty + "</td><td>" + data[i].medincome + "</td><td>" + data[i].medhomeval + "</td><td>" + data[i].ownservice + "</td><td>" + data[i].rentservice + "</td><td>" + data[i].ownartist + "</td><td>" + data[i].rentartist + "</td><td>" + data[i].owntech + "</td><td>" + data[i].renttech + "</td></tr>";
+ j=j+1;
+ }
+
+    if(selection == "below") 
+  	if(data[i].belowpoverty <= 10) {
+ document.getElementById("answer").innerHTML += "<tr><td>" + data[i].zip + "</td><td>" + data[i].belowpoverty + "</td><td>" + data[i].medincome + "</td><td>" + data[i].medhomeval + "</td><td>" + data[i].ownservice + "</td><td>" + data[i].rentservice + "</td><td>" + data[i].ownartist + "</td><td>" + data[i].rentartist + "</td><td>" + data[i].owntech + "</td><td>" + data[i].renttech + "</td></tr>";
+ j=j+1;
+ }
+
+  if(selection == "belowpoverty") 
+  	
+ document.getElementById("answer").innerHTML += "<tr><td>" + data[i].zip + "</td><td>" + data[i].belowpoverty + "</td><td>" + data[i].medincome + "</td><td>" + data[i].medhomeval + "</td><td>" + data[i].ownservice + "</td><td>" + data[i].rentservice + "</td><td>" + data[i].ownartist + "</td><td>" + data[i].rentartist + "</td><td>" + data[i].owntech + "</td><td>" + data[i].renttech + "</td></tr>";
+ j=j+1;
+ 
+ 
+}
+ 
+ document.getElementById("answer2").innerHTML = j;
+ 
+ }
+ </script>
+ </body>
+ </html>

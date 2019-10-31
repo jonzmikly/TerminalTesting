@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+</head>
+<body>
+<form id="form1">
+<p>Input Password: <input type="text" id="password" /></p>
+
+<input type="submit" value="Submit">
+</form>
+<p>Password: <span id="newpw"></span></p>
+<p>Number of characters: <span id="characters"></span></p>
+<p>First character: <span id="first"></span></p>
+<p>Last character: <span id="last"></span></p>
+<p>First char uppercase: <span id="upper"><span></p>
+<p>Any Uppercase?: <span id="any"></span></p>
+
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the rest of your script here
+password = document.getElementById("password").value;
+chars = password.length;
+letter = password.substring(0,1);
+
+document.getElementById("newpw").innerHTML = password;
+document.getElementById("characters").innerHTML = password.length; 
+document.getElementById("first").innerHTML = password.substring(0,1); 
+document.getElementById("last").innerHTML = password.substring((chars-1),chars); 
+
+if(letter.toUpperCase() == letter) {
+	document.getElementById("upper").innerHTML = "Great! Your first letter was capitalized!"; 
+}
+
+else {
+	document.getElementById("upper").innerHTML = "Sorry! Your first letter must be capitalized!"; 
+}
+
+
+    
+return false; // required to not refresh the page; just leave this here
+}// end the submit function
+</script>
+</body>
+</html>
+

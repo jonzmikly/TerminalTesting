@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fun With Forms</title>
+</head>
+<body>
+<form id="form1">
+<label for="firstname">First Name: <input type="text" id="firstname" /></label>
+<label for="lastname">Last Name: <input type="text" id="lastname" /></label>
+<input type="submit" value="Submit">
+</form>
+<p id="yourname">Please provide your name above.</p>
+
+<script>
+document.getElementById("form1").onsubmit=function() {
+    first = document.getElementById("firstname").value;
+    last = document.getElementById("lastname").value;
+    yourName = first + " " + last;
+    document.getElementById("yourname").innerHTML = "Hi " + yourName + ". Welcome to the site.";
+    
+    return false; // required to not refresh the page
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>JQuery - DOM HTML</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+  <!-- modify jquery ui stylesheet reference for selected theme -->
+<link rel="stylesheet" type="text/css"
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/dot-luv/jquery-ui.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+
+<style>
+  #greeting {
+display: none;
+}
+
+.blue {
+	color: blue;
+}
+.green {
+	color: green;
+}
+.red {
+	color: red;
+}
+</style>
+ </head>
+ <body>
+<form id="myForm">
+ <label for="firstname">Name: <input type="text" id="firstname" /></label>
+<p>What is your favorite color?</p>
+<!-- feel free to include your own colors -->
+<select id="colorlist">
+<option value="0">--Choose One--</option>
+<option value="red">Red</option>
+<option value="green">Green</option>
+<option value="blue">Blue</option>
+</select >
+
+ <p>Date: <input type="text" id="dates"></p>
+ <input type="submit" value="Submit">
+ </form>
+ <p id="greeting"></p>
+ <p id="yourdate"></p> 
+ <script>
+ 
+ $(document).ready(function(){
+ $('#myForm').submit(function() {
+ //write your script here
+
+ firstname = $("#firstname").val(); 
+ color = $("#colorlist").val(); 
+ $("#greeting").html(firstname);
+ $("#greeting").append(", your favorite color is " + color);
+ $("#greeting").addClass(color);
+ $("#greeting").fadeIn("slow");
+  
+ return false;
+});
+});
+ </script>
+ </body>
+</html> 
+

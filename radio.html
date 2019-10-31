@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+
+<style>
+label {
+display: block;
+}
+</style>
+</head>
+<body>
+<form id="form1">
+<label for="option1"><input type="radio" name="youroption" value="Option 1" id="option1" /> Option 1</label>
+<label for="option2"><input type="radio" name="youroption" value="Option 2" id="option2"/> Option 2</label>
+<label for="option3"><input type="radio" name="youroption" value="Option 3" id="option3"/> Option 3</label>
+<label for="option4"><input type="radio" name="youroption" value="Option 4" id="option4"/> Option 4</label>
+
+<label for="option1"><input type="radio" name="youroption2" value="Option 1" id="option1" /> Option 1</label>
+<label for="option2"><input type="radio" name="youroption2" value="Option 2" id="option2"/> Option 2</label>
+<label for="option3"><input type="radio" name="youroption2" value="Option 3" id="option3"/> Option 3</label>
+<label for="option4"><input type="radio" name="youroption2" value="Option 4" id="option4"/> Option 4</label>
+<input type="submit" value="Submit">
+</form>
+<p id="answer"></p>
+<p id="answer2"></p>
+
+<script>
+
+// the following lines grab the input value from the form and store it in a variable
+    document.getElementById("form1").onsubmit=function() {
+   option = document.querySelector('input[name = "youroption"]:checked').value;
+   option2 = document.querySelector('input[name = "youroption2"]:checked').value; 
+    
+   document.getElementById("answer").innerHTML = option;
+   document.getElementById("answer2").innerHTML = option2;
+    
+        
+return false; // required to not refresh the page
+}// end the submit function
+</script>
+</body>
+</html>

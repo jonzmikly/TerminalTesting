@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      
+      function drawChart() {
+      
+      selection = document.getElementById("thedropdown").value;
+     
+     
+     info = [
+     {costume: "IT",  firstsearch: 15, secondsearch: 7},
+     {costume: "Witch",  firstsearch: 11, secondsearch: 8},
+     {costume: "Dinosaur",  firstsearch: 9, secondsearch: 6},
+     {costume: "Chucky",  firstsearch: 2, secondsearch: 1},
+     {costume: "Fortnite",  firstsearch: 2, secondsearch: 2},
+     
+     ];
+     
+     
+     for(i=0; i<info.length; i++) { 
+        
+      if(selection==info[i].costume)
+        y1=info[i].firstsearch;
+        y2=info[i].secondsearch;
+
+                //create the if statement to read the json and have it put the appropriate cities data in the chart based on the dropdown
+         
+         
+
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Element', 'Minutes'],
+          ['2004', y1],
+          ['2005', y2],
+          ['2006', y3],
+          ['2007', y4]
+         
+        ]);
+
+        var options = {
+          title: 'Weekly Commute Minutes',
+          legend: { position: 'bottom' }
+        };
+        
+ 
+        //find the appropriate visualization code to draw a line chart and place it in the div below called line_chart
+
+         var chart = new google.visualization.ColumnChart(document.getElementById('line_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+  <form id="form1" onchange="drawChart()" >
+     
+     <select id="thedropdown">
+     <option value="IT">IT</option>
+     <option value="Witch">Witch</option>
+     <option value="Dinosaur">Dinosaur</option>
+     <option value="Fortnite">Fortnite</option>
+     </select>
+    
+  </form>
+    <div id="line_chart"></div>
+
+
+
+  </body>
+</html>
+

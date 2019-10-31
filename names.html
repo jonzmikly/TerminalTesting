@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+
+<style>
+label {
+display: block;
+}
+</style>
+</head>
+<body>
+<form id="form1">
+<label for="name1">Input Name 1: <input type="text" id="name1" /></label>
+<label for="name2">Input Name 2: <input type="text" id="name2" /></label>
+<label for="name3">Input Name 3: <input type="text" id="name3" /></label>
+<input type="submit" value="Submit">
+</form>
+<p id="names"></p>
+
+<script>
+
+// the following lines grab the input from the form and store it in variables
+    document.getElementById("form1").onsubmit=function() {
+    name1 = document.getElementById("name1").value;
+    name2 = document.getElementById("name2").value;
+    name3 = document.getElementById("name3").value;
+    //Include each name in an array
+    namelist = [name1, name2, name3];  
+    
+    //this loop goes through the array and determines the number of characters in each
+
+    for(i=0;i<namelist.length; i++) {
+    
+    document.getElementById("names").innerHTML += namelist[i] + " has " + namelist[i].length + " letters in it<br />";
+  
+    } // end for
+    
+return false; // required to not refresh the page; just leave this here
+}// end the submit function
+</script>
+</body>
+</html>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="data2.json"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ 
+<style>
+th, td {
+text-align: right;
+}
+
+</style>
+
+</head>
+<body>
+<h1>AFD Fire Incidents 2016</h1>
+<form id="form1">
+<select id="thedropdown">
+<option value="0">Choose Month:</option>
+<option value="Jan">Jan</option>
+<option value="Feb">Feb</option>
+<option value="Mar">Mar</option>
+<option value="Apr">Apr</option>
+<option value="May">May</option>
+<option value="Jun">June</option>
+</select>
+</form>
+<p>Total in Month: <span id="answer2"></span></p>
+<table width="800">
+<thead>
+<th>Status</th><th>Month</th><th>Lat</th><th>Long</th>
+</thead>
+<tbody id="answer">
+</tbody>
+</table>
+
+<div id="map_div" style="width: 50%; height: 600px"></div>
+
+<script>
+ google.charts.load("current", {packages:["map"]});
+ google.charts.setOnLoadCallback(drawChart);
+ 
+origData = JSON.parse(origData);
+
+function drawChart() {
+ 
+document.getElementById("form1").onchange = function() {
+newData = [["Lat", "Long", "Status", "Month"],
+];
+
+j=0;
+month = document.getElementById("thedropdown").value;
+document.getElementById("answer").innerHTML = " ";
+ for(i=1;i<origData.length; i++) {
+  if(month == origData[i][3]) {
+ document.getElementById("answer").innerHTML += "<tr><td>" + origData[i][2] + "</td><td>" + origData[i][3] + "</td><td>" + origData[i][0] + "</td><td>" + origData[i][1] + "</td></tr>";
+ j=j+1;
+ newData.push(origData[i]);
+ }// end if
+ }//end for
+ 
+
+ 
+ // creates visualization using newData array
+     var options = {
+        mapType: 'normal',
+        showInfoWindow: true,
+        }
+          var data = google.visualization.arrayToDataTable(newData);
+          var map = new google.visualization.Map(document.getElementById('map_div'));
+          map.draw(data, options);
+  
+ 
+ document.getElementById("answer2").innerHTML = j;
+  
+
+   } //end submit
+ }// end function drawChart
+ </script> 
+ 
+ </body>
+ </html>
+

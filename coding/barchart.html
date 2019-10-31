@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Bar Chart with Dropdown JSON</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+     <style>
+    .chart {
+    width: 100%;
+    }
+    
+    </style>
+  </head>
+  <body>
+  <form id="form1" name="form1" onchange="drawChart()" >
+     
+     <select id="thedropdown">
+     <option value="Austin">Austin</option>
+     <option value="Boulder">Boulder</option>
+     </select>
+    
+  </form>
+  <div class="chart">
+    <div id="div_chart"></div>
+    </div>
+    
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      
+       
+     
+      function drawChart() {
+      
+      info = [{city: "Austin", gender: "male", work: 40, eat: 8, commute: 2, tv: 3, sleep: 7},
+     {city: "Austin", gender: "female", work: 45, eat: 9, commute: 3, tv: 5, sleep: 8},
+     {city: "Boulder", gender: "male", work: 50, eat: 7, commute: 5, tv: 8, sleep: 6},
+     {city: "Boulder", gender: "female", work: 32, eat: 5, commute: 6, tv: 10, sleep: 6}
+     ];
+      
+      mycity = document.getElementById("thedropdown").value;     
+    
+     for(i=0; i<info.length; i++) { 
+    if(mycity == info[i].city && info[i].gender=="male") {
+       workmale = info[i].work;
+       eatmale = info[i].eat;
+       commutemale = info[i].commute;
+       tvmale = info[i].tv;
+       sleepmale = info[i].sleep;
+    
+    }// end if
+    
+    if(mycity == info[i].city && info[i].gender=="female") {
+       workfemale = info[i].work;
+       eatfemale = info[i].eat;
+       commutefemale = info[i].commute;
+       tvfemale = info[i].tv;
+       sleepfemale = info[i].sleep;
+    
+    }// end if
+    } // end for
+    
+        var data = google.visualization.arrayToDataTable([
+          ['Element', 'Male', 'Female'],
+          ['work', workmale, workfemale],
+          ['eat', eatmale, eatfemale],
+          ['commute', commutemale, commutefemale],
+          ['tv', tvmale, tvfemale],
+          ['sleep', sleepmale, sleepfemale]
+        ]);
+
+        var options = {
+            title: 'Weekly Activities',
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('div_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </body>
+</html>
+

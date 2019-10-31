@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Google GeoChart</title>
+    <!---- >
+    https://developers.google.com/chart/interactive/docs/gallery/geochart#full
+    <!---->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+    //2017 US Population and Crime Data per 100000    
+    var crime = [
+         {
+           "measure": "population",
+           "alaska": 739795,
+           "alabama": 4874747,
+           "arkansas": 3004279,
+           "arizona": 7016270,
+           "california": 39536653,
+           "colorado": 5607154,
+           "connecticut": 3588184,
+           "districtofcolumbia": 693972,
+           "delaware": 961939,
+           "florida": 20984400,
+           "georgia": 10429379,
+           "hawaii": 1427538,
+           "iowa": 3145711,
+           "idaho": 1716943,
+           "illinois": 12802023,
+           "indiana": 6666818,
+           "kansas": 2913123,
+           "kentucky": 4454189,
+           "louisiana": 4684333,
+           "massachusetts": 6859819,
+           "maryland": 6052177,
+           "maine": 1335907,
+           "michigan": 9962311,
+           "minnesota": 5576606,
+           "missouri": 6113532,
+           "mississippi": 2984100,
+           "montana": 1050493,
+           "northcarolina": 10273419,
+           "northdakota": 755393,
+           "nebraska": 1920076,
+           "newhampshire": 1342795,
+           "newjersey": 9005644,
+           "newmexico": 2088070,
+           "nevada": 2998039,
+           "newyork": 19849399,
+           "ohio": 11658609,
+           "oklahoma": 3930864,
+           "oregon": 4142776,
+           "pennsylvania": 12805537,
+           "rhodeisland": 1059639,
+           "southcarolina": 5024369,
+           "southdakota": 869666,
+           "tennessee": 6715984,
+           "texas": 28304596,
+           "utah": 3101833,
+           "virginia": 8470020,
+           "vermont": 623657,
+           "washington": 7405743,
+           "wisconsin": 5795483,
+           "westvirginia": 1815857,
+           "wyoming": 579315
+         },
+         {
+           "measure": "violent",
+           "alaska": 829,
+           "alabama": 524,
+           "arkansas": 555,
+           "arizona": 508,
+           "california": 449,
+           "colorado": 368,
+           "connecticut": 228,
+           "districtofcolumbia": 1005,
+           "delaware": 453,
+           "florida": 408,
+           "georgia": 357,
+           "hawaii": 251,
+           "iowa": 293,
+           "idaho": 226,
+           "illinois": 439,
+           "indiana": 399,
+           "kansas": 413,
+           "kentucky": 226,
+           "louisiana": 557,
+           "massachusetts": 358,
+           "maryland": 500,
+           "maine": 121,
+           "michigan": 450,
+           "minnesota": 238,
+           "missouri": 530,
+           "mississippi": 286,
+           "montana": 377,
+           "northcarolina": 364,
+           "northdakota": 281,
+           "nebraska": 306,
+           "newhampshire": 199,
+           "newjersey": 229,
+           "newmexico": 783,
+           "nevada": 556,
+           "newyork": 357,
+           "ohio": 297,
+           "oklahoma": 456,
+           "oregon": 282,
+           "pennsylvania": 313,
+           "rhodeisland": 232,
+           "southcarolina": 506,
+           "southdakota": 434,
+           "tennessee": 652,
+           "texas": 439,
+           "utah": 239,
+           "virginia": 208,
+           "vermont": 166,
+           "washington": 304,
+           "wisconsin": 320,
+           "westvirginia": 351,
+           "wyoming": 238
+         },
+         {
+           "measure": "property",
+           "alaska": 3542,
+           "alabama": 2957,
+           "arkansas": 3079,
+           "arizona": 2915,
+           "california": 2497,
+           "colorado": 2702,
+           "connecticut": 1770,
+           "districtofcolumbia": 4284,
+           "delaware": 2441,
+           "florida": 2512,
+           "georgia": 2860,
+           "hawaii": 2829,
+           "iowa": 2125,
+           "idaho": 1635,
+           "illinois": 2011,
+           "indiana": 2417,
+           "kansas": 2801,
+           "kentucky": 2129,
+           "louisiana": 3367,
+           "massachusetts": 1437,
+           "maryland": 2222,
+           "maine": 1507,
+           "michigan": 1800,
+           "minnesota": 2192,
+           "missouri": 2834,
+           "mississippi": 2734,
+           "montana": 2592,
+           "northcarolina": 2545,
+           "northdakota": 2198,
+           "nebraska": 2274,
+           "newhampshire": 1382,
+           "newjersey": 1556,
+           "newmexico": 3942,
+           "nevada": 2612,
+           "newyork": 1514,
+           "ohio": 2419,
+           "oklahoma": 2876,
+           "oregon": 2986,
+           "pennsylvania": 1649,
+           "rhodeisland": 1752,
+           "southcarolina": 3196,
+           "southdakota": 1876,
+           "tennessee": 2941,
+           "texas": 2563,
+           "utah": 2780,
+           "virginia": 1793,
+           "vermont": 1437,
+           "washington": 3174,
+           "wisconsin": 1808,
+           "westvirginia": 1852,
+           "wyoming": 1830
+         }
+        ];
+          
+          //select thedropdown element
+          select = document.getElementById("thedropdown");
+          
+          //get the value of dropdown
+          selection = select.value;
+          
+          //get the text from the dropdown for the chart
+          selectiontext = select.options[select.selectedIndex];
+          
+          //go json and find proper measure, assign values to each state variable
+          for(i=0; i<crime.length; i++) {
+            if(selection == crime[i].measure) {
+            
+
+          //this draws the chart
+        var data = google.visualization.arrayToDataTable([
+          ['State', selectiontext],
+          [ "Alaska", data[i].alaska ],
+          [ "Alabama", data[i].alabama ],
+          [ "Arkansas", data[i].arkansas ],
+          [ "Arizona", data[i].arizona ],
+          [ "California", data[i].california ],
+          [ "Colorado", data[i].colorado ],
+          [ "Connecticut", data[i].connecticut ],
+          [ "Delaware", data[i].delaware ],
+          [ "Florida", data[i].florida ],
+          [ "Georgia", data[i].georgia ],
+          [ "Hawaii", data[i].hawaii ],
+          [ "Iowa", data[i].iowa ],
+          [ "Idaho", data[i].idaho ],
+          [ "Illinois", data[i].illinois ],
+          [ "Indiana", data[i].indiana ],
+          [ "Kansas", data[i].kansas ],
+          [ "Kentucky", data[i].kentucky ],
+          [ "Louisiana", data[i].louisiana ],
+          [ "Massachusetts", data[i].massachusetts ],
+          [ "Maryland", data[i].maryland ],
+          [ "Maine", data[i].maine ],
+          [ "Michigan", data[i].michigan ],
+          [ "Minnesota", data[i].minnesota ],
+          [ "Missouri", data[i].missouri ],
+          [ "Mississippi", data[i].mississippi ],
+          [ "Montana", data[i].montana ],
+          [ "North Carolina", data[i].northcarolina ],
+          [ "North Dakota", data[i].northdakota ],
+          [ "Nebraska", data[i].nebraska ],
+          [ "New Hampshire", data[i].newhampshire ],
+          [ "New Jersey", data[i].newjersey ],
+          [ "New Mexico", data[i].newmexico ],
+          [ "Nevada", data[i].nevada ],
+          [ "New York", data[i].newyork ],
+          [ "Ohio", data[i].ohio ],
+          [ "Oklahoma", data[i].oklahoma ],
+          [ "Oregon", data[i].oregon ],
+          [ "Pennsylvania", data[i].pennsylvania ],
+          [ "Rhode Island", data[i].rhodeisland ],
+          [ "South Carolina", data[i].southcarolina ],
+          [ "South Dakota", data[i].southdakota ],
+          [ "Tennessee", data[i].tennessee ],
+          [ "Texas", data[i].texas ],
+          [ "Utah", data[i].utah ],
+          [ "Virginia", data[i].virginia ],
+          [ "Vermont", data[i].vermont ],
+          [ "Washington", data[i].washington ],
+          [ "Wisconsin", data[i].wisconsin ],
+          [ "West Virginia", data[i].westvirginia ],
+          [ "Wyoming", data[i].wyoming ]
+        ]);
+            }// end if
+          }// end for
+
+        var options = {
+          region: 'US',
+          displayMode: 'regions',
+          resolution: 'provinces',
+          colorAxis: {colors: ['darkblue']},
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+    
+  <body>
+    <h1>2017 US State Population and Crime Per 100,000</h1>  
+    <form id="form1" onchange="drawRegionsMap()">
+<select id="thedropdown">
+<option value="population">Population</option>
+<option value="violent">Violent Crime Per 100k</option>
+<option value="property">Property Crime Per 100k</option>
+
+</select>
+</form>
+    <div id="geochart"></div>
+  </body>
+</html>
+

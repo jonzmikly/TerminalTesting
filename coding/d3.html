@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<meta charset="utf-8">
+</head>
+<body>
+<div id="box"></div>
+<script>
+var theData = [ 17, 99, 43 ];
+
+d3.select("#box").selectAll("h2")
+ .data(theData)
+ .enter()
+ .append("h2")
+ .text( function (d) { return d; } );
+ </script>
+
+</body>
+</html>
+

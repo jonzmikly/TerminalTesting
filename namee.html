@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+
+<style>
+label {
+display: block;
+}
+</style>
+</head>
+<body>
+<form id="form1">
+<label for="name1">Input Name 1: <input type="text" id="name1" /></label>
+<label for="name2">Input Name 2: <input type="text" id="name2" /></label>
+<label for="name3">Input Name 3: <input type="text" id="name3" /></label>
+<label for="num">Give me a number! <input type="text" id="num" /></label>
+<input type="submit" value="Submit">
+</form>
+<p id="names"></p>
+<p id="char"></p>
+<script>
+
+// the following lines grab the input from the form and store it in variables
+    document.getElementById("form1").onsubmit=function() {
+    name1 = document.getElementById("name1").value;
+    name2 = document.getElementById("name2").value;
+    name3 = document.getElementById("name3").value;
+    num = document.getElementById("num").value;   
+    //Include each name in an array
+    namelist = [name1, name2, name3];
+    sum = name1.length + name2.length + name3.length;  
+    
+    //this loop goes through the array and determines the number of characters in each
+
+    for(i=0;i<namelist.length; i++) {
+    
+    if(namelist[i].length>num) 
+    document.getElementById("names").innerHTML += namelist[i] + "* has " + namelist[i].length + " letters in it<br />";
+
+    else 
+    document.getElementById("names").innerHTML += namelist[i] + " has " + namelist[i].length + " letters in it<br />";
+  
+    } // end for
+
+    document.getElementById("char").innerHTML += "Your name has " + sum + " characters in it<br />";
+    
+return false; // required to not refresh the page; just leave this here
+}// end the submit function
+</script>
+</body>
+</html>
+

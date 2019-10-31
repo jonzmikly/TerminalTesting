@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+
+</head>
+<body>
+<form id="form1">
+
+<select id="youroption">
+  <option value="0">Choose One</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+  <option value="4">Option 4</option>
+</select>
+
+<select id="youroption2">
+  <option value="0">Choose One</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+  <option value="4">Option 4</option>
+</select>
+
+</form>
+
+
+<p id="answer"></p>
+<p id="answer2"></p>
+
+
+<script>
+
+   document.getElementById("form1").onchange=function() {
+   option = document.getElementById("youroption").value;
+   option2 = document.getElementById("youroption2").value;
+    
+   document.getElementById("answer").innerHTML = option;
+   document.getElementById("answer2").innerHTML = option2;
+           
+
+}// end the onchange function
+</script>
+</body>
+</html>
+

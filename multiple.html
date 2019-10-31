@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Daily Activities</title>
+  <style>
+  
+  body {
+  font-family: Helvetica;
+ 
+  }
+  .bars {
+  background-color: white;
+  height: 20px;
+  color: white;
+  font-size: 12px;
+  text-align: right;
+  padding: 5px 5px 0 0;
+  width: 0;
+  }
+  
+  .text {
+  font-weight: bold;
+  
+  }
+  
+  #main {
+  width: 800px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+  border-radius: 10px;
+  }
+  
+ 
+  
+ 
+  </style>
+  </head>
+  <body>
+  <div id="main">
+  <h1>How many hours per day do you spend?:</h1>
+  <!-- this is your form -->
+  <table>
+  <form id="form1">
+     <tr><td>Working: </td><td><input type="text" name="workvar" id="workvar"></td></tr>
+     <tr><td>Eating: </td><td><input type="text" name="eatvar" id="eatvar"></td></tr>
+     <tr><td>Sleeping: </td><td><input type="text" name="sleepvar" id="sleepvar"></td></tr>
+    <tr><td> <input type="submit" value="Submit"></td></tr>
+     </form>
+ </table>
+     
+     <!-- this is the location where the total is input from the calculation below -->
+       <p>Total: <span id="total"></span></p>
+       <p>That leaves <span id="difference"></span> hours in your day.</p>
+       <p>Percentages reflect 24 hours in a day.</p>
+    
+       <!-- this draws the divs for bars and text, but you won't see them until you enter data. Initial state of bars is white -->
+       <div id="workdiv" class="bars"></div>
+       <div id="worktext" class="text"></div><br />
+       <div id="eatdiv" class="bars"></div>
+       <div id="eattext" class="text"></div><br />
+       <div id="sleepdiv" class="bars"></div>
+       <div id="sleeptext" class="text"></div>
+       
+  </div>  
+    <script type="text/javascript">
+    
+    //everything is within this onsubmit function. Executes on form submit
+     document.getElementById("form1").onsubmit=function() {
+     
+     //these lines get the value from the form and put it in a variable. the || indicates a 0 if empty.
+       work = parseFloat(document.getElementById('workvar').value) || 0;
+       eat = parseFloat(document.getElementById('eatvar').value) || 0;
+       sleep = parseFloat(document.getElementById('sleepvar').value) || 0;
+     
+       //total
+       total = work + eat + sleep;
+       difference = 24-total;
+       
+       //if total is more than 24, gives a message
+       if(total > 24) {
+    document.getElementById("total").innerHTML = "Total is " + total + ". Day only has 24 hours."
+   
+    }// end if
+    
+    //if total is less than 24 hours, executes the rest
+    else { 
+       document.getElementById("total").innerHTML = total;
+       document.getElementById("difference").innerHTML = difference;
+       
+       
+       //JSON array of objects that hold data for chart
+       things = [{name: "work", val: work, color: "blue"},
+       {name: "eat", val: eat, color: "orange"},
+       {name: "sleep", val: sleep, color: "brown"}
+       ];
+       
+      
+       // loops through JSON to get width, name and color for each bar.
+        for(i = 0; i< things.length; i++) {
+        document.getElementById(things[i].name + "div").style.width = things[i].val*50 + "px";
+        document.getElementById(things[i].name + "div").style.backgroundColor = things[i].color;
+        document.getElementById(things[i].name + "div").innerHTML = Math.round((things[i].val/24)*100) + "%";
+        document.getElementById(things[i].name + "text").innerHTML = things[i].name;
+    
+     }//end for
+     }  //end else
+      return false;    
+       
+     } // end function
+     
+    </script>    
+      
+</body>
+</html>

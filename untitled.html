@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>JQuery - DOM Fade In</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <style>
+#greeting {
+display: none;
+}
+</style>
+ </head>
+
+ <body>
+ <form id="myForm">
+<label for="firstname">Name: <input type="text" id="firstname" /></label>
+<input type="submit" value="Submit">
+ </form>
+ <p id="greeting">Hello </p>
+
+ <script>
+ 
+ $(document).ready(function(){
+ 
+ $('#myForm').submit(function() {
+ firstname = $("#firstname").val(); 
+ 
+ $("#greeting").append(firstname);
+  $("#greeting").fadeIn("slow");
+
+  
+ return false;
+});
+});
+ </script>
+ </body>
+</html> 

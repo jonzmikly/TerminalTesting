@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head><title>Related Artists App</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+<p>Pick a Texas band to see related artists.</p>
+<form  id="form1">
+
+
+
+<select id="thedropdown">
+  <option value="0">Choose:</option>
+  <option value="old97">Old 97's</option>
+  <option value="spoon">Spoon</option>
+  <option value="bob">Bob Schneider</option>
+</select>
+
+</form>
+
+<p>Artist: <span id="artist"></span></p>
+<p>Related Artists: <br /> <span id="related"></span></p>
+
+
+<script>
+var old97 = [ {
+    "name" : "Son Volt",
+    "popularity" : 42,
+    "type" : "artist",
+    "uri" : "spotify:artist:7AhDVqsNA5q46WKsRPXvoe"
+  }, {
+  
+    "name" : "Uncle Tupelo",
+    "popularity" : 47,
+    "type" : "artist",
+    "uri" : "spotify:artist:2Plkkomsc4DKawkCioLKjc"
+  }, {
+    
+    "name" : "Whiskeytown",
+    "popularity" : 47,
+    "type" : "artist",
+    "uri" : "spotify:artist:0tyLMmQvEuyQR4qjGBdbem"
+  }, {
+    "name" : "Drive-By Truckers",
+    "popularity" : 56,
+    "type" : "artist",
+    "uri" : "spotify:artist:1rXr1ZnvbRoYBaedIl9v4v"
+  }, {
+    "name" : "Golden Smog",
+    "popularity" : 35,
+    "type" : "artist",
+    "uri" : "spotify:artist:0BLh5cn4nqfqoVUREx3hLj"
+  }, {
+    "name" : "Alejandro Escovedo",
+    "popularity" : 33,
+    "type" : "artist",
+    "uri" : "spotify:artist:1Cc79YAHP7xvQAVQSjveP6"
+  }, {
+    "name" : "The Jayhawks",
+    "popularity" : 48,
+    "type" : "artist",
+    "uri" : "spotify:artist:2UDplVRprMbazU74Hq8OLl"
+  }, {
+  
+    "name" : "Rhett Miller",
+    "popularity" : 38,
+    "type" : "artist",
+    "uri" : "spotify:artist:0wNZd1CMOsFZ0TiBhlqjD5"
+  }, {
+    "name" : "Jason Isbell",
+    "popularity" : 64,
+    "type" : "artist",
+    "uri" : "spotify:artist:3Q8wgwyVVv0z4UEh1HB0KY"
+  }, {
+    "name" : "Jay Farrar",
+    "popularity" : 42,
+    "type" : "artist",
+    "uri" : "spotify:artist:4tPRMBm25eaPJaceUBPqTK"
+  }
+];
+var spoon =  [ {
+    "name" : "Modest Mouse",
+    "popularity" : 73,
+    "type" : "artist",
+    "uri" : "spotify:artist:1yAwtBaoHLEDWAnWR87hBT"
+  }, {
+    "name" : "The Walkmen",
+    "popularity" : 54,
+    "type" : "artist",
+    "uri" : "spotify:artist:6kFay2DQ5aZfeu5OsrF3Pw"
+  }, {
+    "name" : "The New Pornographers",
+    "popularity" : 53,
+    "type" : "artist",
+    "uri" : "spotify:artist:4mO4aGO6u29UyR6XLZR9XW"
+  }, {
+    "name" : "TV On The Radio",
+    "popularity" : 65,
+    "type" : "artist",
+    "uri" : "spotify:artist:3HJIB8sYPyxrFGuwvKXSLR"
+  }, {
+    "name" : "The Shins",
+    "popularity" : 69,
+    "type" : "artist",
+    "uri" : "spotify:artist:4LG4Bs1Gadht7TCrMytQUO"
+  }, {
+    "name" : "Clap Your Hands Say Yeah",
+    "popularity" : 54,
+    "type" : "artist",
+    "uri" : "spotify:artist:1jSaZgaKHmgc7VTgML528r"
+  }, {
+    "name" : "Pinback",
+    "popularity" : 54,
+    "type" : "artist",
+    "uri" : "spotify:artist:4ZWvN9FEfdTea1SEHjpTNi"
+  }, {
+    "name" : "Built To Spill",
+    "popularity" : 56,
+    "type" : "artist",
+    "uri" : "spotify:artist:3kbBWco9PZ5eSQsNScwG6U"
+  }, {
+    "name" : "Wolf Parade",
+    "popularity" : 47,
+    "type" : "artist",
+    "uri" : "spotify:artist:0XSqX2PB3C5dTMv7SZaxSm"
+  }, {
+    "name" : "Tapes 'n Tapes",
+    "popularity" : 39,
+    "type" : "artist",
+    "uri" : "spotify:artist:3PjtmMdeYx3Dg49ZRLS27J"
+  }, {
+    "name" : "The National",
+    "popularity" : 72,
+    "type" : "artist",
+    "uri" : "spotify:artist:2cCUtGK9sDU2EoElnk0GNB"
+  }, {
+    "name" : "Dr. Dog",
+    "popularity" : 61,
+    "type" : "artist",
+    "uri" : "spotify:artist:4mLJ3XfOM5FPjSAWdQ2Jk7"
+  } ];
+  
+  var bob = [ {
+    "name" : "Jackie Greene",
+    "popularity" : 48,
+    "type" : "artist",
+    "uri" : "spotify:artist:5idHaEmJbiGTZ2MBmhmGMV"
+  }, {
+    
+    "name" : "Martin Sexton",
+    "popularity" : 42,
+    "type" : "artist",
+    "uri" : "spotify:artist:16HLVuiCN8iGYhBca7lsqE"
+  }, {
+    
+    "name" : "Old 97's",
+    "popularity" : 49,
+    "type" : "artist",
+    "uri" : "spotify:artist:27AzFtMZhRN78bAMPntbpF"
+  }, {
+    
+    "name" : "Rhett Miller",
+    "popularity" : 38,
+    "type" : "artist",
+    "uri" : "spotify:artist:0wNZd1CMOsFZ0TiBhlqjD5"
+  }, {
+    
+    "name" : "Willy Porter",
+    "popularity" : 24,
+    "type" : "artist",
+    "uri" : "spotify:artist:25T5lTKkgpYSdPuj2oCMH4"
+  }, {
+    
+    "name" : "Virginia Coalition",
+    "popularity" : 28,
+    "type" : "artist",
+    "uri" : "spotify:artist:7AtJQjZylo8J5Ow69TXACZ"
+  }, {
+    
+    "name" : "Mike Doughty",
+    "popularity" : 43,
+    "type" : "artist",
+    "uri" : "spotify:artist:7GiYUU4EMCOMkpaDD8fzDR"
+  }, {
+    
+    "name" : "Charlie Mars",
+    "popularity" : 42,
+    "type" : "artist",
+    "uri" : "spotify:artist:6opelqBLUDZCLeuRCjt6AL"
+  }, {
+    
+    "name" : "Glen Phillips",
+    "popularity" : 28,
+    "type" : "artist",
+    "uri" : "spotify:artist:7pbZAYKypiqCp97hiE8YmN"
+  }, {
+    
+    "name" : "Jackopierce",
+    "popularity" : 28,
+    "type" : "artist",
+    "uri" : "spotify:artist:1D9nOrYVEVg5nRbUABsrcW"
+  }
+  ];
+//function that executes when you submit the form
+document.getElementById("form1").onchange=function() {
+	  
+// assigns value in dropdown to a variable
+artist = document.getElementById("thedropdown").value;
+if (artist != 0) {
+//changes the DOM element for artist to form value
+select = document.getElementById("thedropdown");
+option = select.options[select.selectedIndex].text;
+document.getElementById("artist").innerHTML= option;
+
+//need this to convert value of artist to executable code to reference the related band's array
+band = eval(artist);
+    document.getElementById("related").innerHTML = "";
+    //for loop reads the json and returns the popularity value if value from form equals value in json
+    for (i=0; i<band.length; i++) {
+  // use the += here to append to the element for each iteration of the loop, rather than replace
+  document.getElementById("related").innerHTML += band[i].name + " " + band[i].popularity + "<br/>" ;
+ 
+    } // end internal for
+ 
+  
+} // end starting if
+
+}//end function
+</script>
+
+
+
+</body>
+</html>

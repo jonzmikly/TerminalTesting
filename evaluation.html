@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructor Evaluation</title>
+<style>
+.button {
+display: block;
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<form  id="form1">
+<p>The instructor was prepared for class.</p>
+<input type="radio" name="prepared" value="1" /><label for="prepared_one">1</label>
+<input type="radio" name="prepared" value="2" /><label for="prepared_two">2</label>
+<input type="radio" name="prepared" value="3" /><label for="prepared_three">3</label>
+<input type="radio" name="prepared" value="4" /><label for="prepared_four">4</label>
+<input type="radio" name="prepared" value="5" /><label for="prepared_five">5</label>
+
+<p>The topic was interesting to me.</p>
+<input type="radio" name="interesting" value="1" /><label for="int_one">1</label>
+<input type="radio" name="interesting" value="2" /><label for="int_two">2</label>
+<input type="radio" name="interesting" value="3" /><label for="int_three">3</label>
+<input type="radio" name="interesting" value="4" /><label for="int_four">4</label>
+<input type="radio" name="interesting" value="5" /><label for="int_five">5</label>
+
+
+<button type="submit" value="Submit" class="button">Submit</button>
+</form>
+
+<p>Question 1 Answer: <span id="quest1"></span></p>
+<p>Question 2 Answer: <span id="quest2"></span></p>
+<p>Score Total: <span id="total"></span></p>
+<p>Score Average: <span id="average"></span></p>
+    <p>Average above 3 (Yes or No): <span id="above3"></span></p>
+    <p>Which measures scored 5?: <span id="score5"></span></p>
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the rest of your script here
+	prep = parseInt(document.querySelector('input[name = "prepared"]:checked').value);
+	interest = parseInt(document.querySelector('input[name = "interesting"]:checked').value);
+
+	var sum = prep + interest;
+	var average = sum/i;
+
+	document.getElementById("quest1").innerHTML = prep;
+	document.getElementById("quest2").innerHTML = interest;
+	document.getElementById("total").innerHTML = sum;
+	document.getElementById("average").innerHTML = average;	
+
+	if(average>=3) 
+		document.getElementById("above3").innerHTML = "Yes";
+	else
+		document.getElementById("above3").innerHTML = "No";		
+
+	answers = [];
+	answers.push(prep);
+	answers.push(interest);
+
+	for(i=0;i<answers.length;i++)
+		if(answers[i]==5)
+			document.getElementById("score5").innerHTML = "Question" + (i+1);	
+
+	// if(prep==5 && interest == 5)
+	//	document.getElementById("score5").innerHTML = "Prep";
+	// if(interest==5)
+	// 	document.getElementById("score5").innerHTML = "Interest";
+
+return false; // required to not refresh the page; just leave this here
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="data.json"></script>
+
+<style>
+th, td {
+text-align: right;
+}
+
+</style>
+
+</head>
+<body>
+<h1>AFD Fire Incidents 2016</h1>
+<form id="form1">
+<p>Search Unit: <input type="text" id="term" /></p>
+<input type="submit" value="submit" />
+</form>
+<p>Search Term: <span id="answer2"></span></p>
+<p>Number: <span id="answer3"></span></p>
+<table width="800">
+<thead>
+<th>Incident</th><th>Month</th><th>Unit</th><th>Lat</th><th>Long</th>
+</thead>
+<tbody id="answer">
+</tbody>
+</table>
+
+<script>
+data = JSON.parse(data);
+
+document.getElementById("form1").onsubmit = function() {
+document.getElementById("answer").innerHTML = "";
+j=0;
+searchterm = document.getElementById("term").value;
+searchtermlower = searchterm.toLowerCase();
+searchtermlength = searchterm.length;
+
+for(i=0;i<data.length; i++) {
+datalower = (data[i].battalion).toLowerCase();
+datasearch = datalower.substring(0,searchtermlength);
+if(searchtermlower == datasearch) {
+ document.getElementById("answer").innerHTML += "<tr><td>" + data[i].incnum + "</td><td>" + data[i].month + "</td><td>" + data[i].battalion + "</td><td>" + data[i].lat + "</td><td>" + data[i].long + "</td></tr>";
+j++;
+ }
+
+}
+      
+ 
+ 
+ document.getElementById("answer2").innerHTML = searchterm;
+ document.getElementById("answer3").innerHTML = j;
+ return false;
+ }
+ 
+ </script>
+ 
+ 
+ </body>
+ </html>
+

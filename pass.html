@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Form</title>
+</head>
+<body>
+<form id="form1">
+<p>Input Password: <input type="text" id="password" /></p>
+
+<input type="submit" value="Submit">
+</form>
+<p>Password: <span id="newpw"></span></p>
+<p>Number of characters: <span id="characters"></span></p>
+<p>First character: <span id="first"></span></p>
+<p>Last character: <span id="last"></span></p>
+    <p>First char uppercase: <span id="upper"></span></p>
+<p>Any Uppercase?: <span id="any"></span></p>
+
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the rest of your script here
+password = document.getElementById("password").value;
+first = password.substring(0,1);
+last = password.substring(password.length-1);
+
+document.getElementById("newpw").innerHTML = password;
+document.getElementById("characters").innerHTML = password.length;
+document.getElementById("first").innerHTML = first;
+document.getElementById("last").innerHTML = last;
+
+if(first.toUpperCase()==first)
+	document.getElementById("upper").innerHTML = "Your first character is uppercase";
+
+else 
+	document.getElementById("upper").innerHTML = "First character is lowercase";
+
+for(i=0;i<password.length;i++) {
+	char = password.substring(i,i+1);
+
+	if(char.toUpperCase==char)
+		document.getElementById("any").innerHTML = "Great! One of your characters is uppercase!";
+	if(document.getElementById("any").innerHTML == "";) {
+		document.getElementById("any").innerHTML = "One of your characters must be uppercase.";
+	}
+}
+    
+return false; // required to not refresh the page; just leave this here
+}// end the submit function
+</script>
+</body>
+</html>
+

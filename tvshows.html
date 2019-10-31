@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>Daily Activities</title>
+<style>
+#gilmore {
+display: none;
+}
+
+#daily {
+display: none;
+}
+
+#madmen {
+display: none;
+}
+
+#statement {
+display: none;
+}
+
+
+
+
+
+</style>
+    </head>
+<body>
+
+<form  id="form1">
+
+<p>Pick a favorite TV show.</p>
+
+<select id="thedropdown">
+  <option value="0"></option>
+  <option value="1">Gilmore Girls</option>
+  <option value="2">Daily Show</option>
+  <option value="3">Mad Men</option>
+</select>
+</form>
+
+<p>
+<span id="gilmore"><img src="gilmore.jpg" width="400" /></span>
+<span id="daily"><img src="dailyshow.jpg" width="400" /></span>
+<span id="madmen"><img src="madmen.jpg" width="400" /></span></p>
+<p id="statement">Pick a show</p>
+<script>
+
+//this is our first onchange event. No need for return false; below, only for onsubmit.
+document.getElementById("form1").onchange=function() {
+
+//removes items from display onchange
+document.getElementById("gilmore").style.display = "none";
+document.getElementById("madmen").style.display = "none";
+document.getElementById("daily").style.display = "none";
+document.getElementById("statement").style.display = "none";
+
+choice=document.getElementById("thedropdown").value;  
+
+if (choice == 1) {
+document.getElementById("gilmore").style.display = "block";
+}
+
+if(choice == 2) {
+document.getElementById("daily").style.display = "block";
+}
+
+if (choice == 3) {
+document.getElementById("madmen").style.display = "block";
+}
+
+if (choice == 0) {
+document.getElementById("statement").style.display = "block";
+}
+}
+
+</script>
+</body>
+</html>
